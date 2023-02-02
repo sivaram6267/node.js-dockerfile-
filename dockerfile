@@ -44,4 +44,4 @@ RUN mvn clean install -Dmaven.test.skip=true
 FROM openjdk:17-alpine
 WORKDIR /app
 COPY --from=build /app/target/omg-cloud-config-server-0.0.1-SNAPSHOT.jar /app
-CMD ["java" "-jar" "omg-cloud-config-server-0.0.1-SNAPSHOT.jar"] 
+CMD ["java","-jar","omg-cloud-config-server-0.0.1-SNAPSHOT.jar"] 
