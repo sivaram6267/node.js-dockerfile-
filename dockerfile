@@ -34,3 +34,14 @@ CMD ["java -jar onlinegrocerystore-0.0.1-SNAPSHOT.jar"]
 according file change points 
 
 container  will exited port number give server 
+
+
+FROM maven:3.8.7-sapmachine-17 as build
+WORKDIR /app
+COPY  . .
+RUN mvn clean install -Dmaven.test.skip=true
+
+FROM openjdk:17-alpine
+WORKDIR /app
+COPY --from=build /app/target/omg-cloud-config-server-0.0.1-SNAPSHOT.jar /app
+CMD ["java" "-jar" "omg-cloud-config-server-0.0.1-SNAPSHOT.jar"] 
